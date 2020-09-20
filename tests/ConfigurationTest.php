@@ -6,7 +6,8 @@ namespace Crawler;
 
 use ArrayObject;
 use Crawler\Type\StringType;
-use PhpCsFixer\Tests\TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
@@ -30,5 +31,12 @@ final class ConfigurationTest extends TestCase
         ]);
         $classType = $customConfiguration->getTypeClass('array_object');
         static::assertSame(ArrayObject::class, $classType);
+    }
+
+    public function testGetInvalidTypeClassAndExpectException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $customConfiguration = new Configuration();
+        $customConfiguration->getTypeClass('invalid');
     }
 }

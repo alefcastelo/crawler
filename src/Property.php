@@ -19,7 +19,8 @@ class Property
 
     public function __construct(array $config, Document $document = null)
     {
-        $document = $document ?? $config['context']['document'];
+        $this->context = $config['context'] ?? [];
+        $document = $document ?? $this->context['document'] ?? null;
 
         if (!$document instanceof Document) {
             throw new InvalidArgumentException('Document is not defined');
@@ -32,11 +33,9 @@ class Property
         ;
 
         $this->name = $config['name'];
+        $this->context['name'] = $config['name'];
         $this->xpath = $config['xpath'] ?? null;
-
-        $config['context']['name'] = $config['name'];
-        $this->context = $config['context'];
-        $this->properties = $config['context']['properties'] ?? [];
+        $this->properties = $this->context['properties'] ?? [];
     }
 
     public function getName(): string
@@ -56,8 +55,11 @@ class Property
             return null;
         }
 
-        $type = (new Instantiator(new Element($documents), $this->classType, $this->context))->getType();
+        return $this->getType($documents)->getValue();
+    }
 
-        return $type->getValue();
+    protected function getType(ArrayObject $documents)
+    {
+        return (new Instantiator(new Element($documents), $this->classType, $this->context))->getType();
     }
 }
