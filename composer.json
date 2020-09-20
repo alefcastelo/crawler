@@ -1,5 +1,6 @@
 {
     "name": "alefcastelo/crawler",
+    "license": "MIT",
     "description": "A package to crawler HTML pages based on schema definition",
     "require": {
         "ext-dom": "*",
@@ -8,6 +9,7 @@
         "spatie/browsershot": "^3.37"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "phpunit/phpunit": "^9",
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/php-code-coverage": "^9.1"
