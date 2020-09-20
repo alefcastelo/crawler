@@ -1,4 +1,6 @@
 {
+    "name": "alefcastelo/crawler",
+    "description": "A package to crawler HTML pages based on schema definition",
     "require": {
         "ext-dom": "*",
         "ext-json": "*",
@@ -9,6 +11,11 @@
         "phpunit/phpunit": "^9",
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/php-code-coverage": "^9.1"
+    },
+    "scripts": {
+        "test:unit": "phpunit --color=always tests",
+        "lint": "php-cs-fixer fix --ansi --verbose --show-progress=estimating",
+        "lint:check": "@lint --dry-run"
     },
     "autoload": {
         "psr-4": {
