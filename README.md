@@ -1,6 +1,6 @@
 # Crawler
 
-This package provides an easy way to  extract data from HTML data based on a schema definition.
+This package provides an easy way to  extract data from static HTML pages based on a schema definition.
 
 ## Installation
 
